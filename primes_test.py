@@ -26,7 +26,7 @@ def test_sieve_2(monkeypatch, capsys, detector):
 
 
 def test_primes_1(monkeypatch, capsys, detector):
-    if detector == 1:
+    if detector <= 1:
         print ('This test will fail with step 1')
         exit('expected to fail at this time')
     else:
@@ -86,9 +86,10 @@ def detector(monkeypatch, capsys):
     output = capsys.readouterr().out
 
     if sieve is None:
-        print('Der Befehl "return sieve" fehlt am Ende Ihres Programms')
-        print('Tests können nicht durchgeführt werden')
-        step = 0
+        exit('\n=================== IMPORTANT ====================================='
+             '\nThe command "return sieve" seems missing at the end of your program'
+             '\nNo tests can be run without this command\n'
+             '=================== IMPORTANT =====================================\n')
     elif output == '':
         step = 1
     elif sieve[3] == 3 and sieve[4] == 0:
